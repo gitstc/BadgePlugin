@@ -1,0 +1,86 @@
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.stc.BadgePlugin"
+    version="1.0.0">
+
+    <name>Badge Plugin</name>
+
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>
+
+    <js-module src="www/BadgePlugin.js" name="BadgePlugin">
+		<clobbers target="window.plugins.BadgePlugin"/>
+	</js-module>
+
+    <!-- android -->
+    <platform name="android">
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            
+            <feature name="BadgePlugin" >
+                <param name="android-package" value="com.stc.BadgePlugin.BadgePlugin"/>
+            </feature>
+
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/*">
+
+            <!--for android-->
+            <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/>
+            <uses-permission android:name="com.android.launcher.permission.WRITE_SETTINGS"/>
+            <uses-permission android:name="com.android.launcher.action.INSTALL_SHORTCUT" />
+            <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
+
+            <!--for Samsung-->
+            <uses-permission android:name="com.sec.android.provider.badge.permission.READ"/>
+            <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE"/>
+
+            <!--for htc-->
+            <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS"/>
+            <uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT"/>
+
+            <!--for sony-->
+            <uses-permission android:name="com.sonyericsson.home.permission.BROADCAST_BADGE"/>
+
+            <!--for apex-->
+            <uses-permission android:name="com.anddoes.launcher.permission.UPDATE_COUNT"/>
+
+            <!--for solid-->
+            <uses-permission android:name="com.majeur.launcher.permission.UPDATE_BADGE"/>
+
+        </config-file>
+        
+        <source-file src="src/android/BadgePlugin.java" 
+            target-dir="src/com/stc/BadgePlugin" />
+        <!-- Lib -->
+        <source-file src="src/android/ShortcutBadger.java" 
+            target-dir="src/com/stc/BadgePlugin" />
+        <source-file src="src/android/ShortcutBadgeException.java" 
+            target-dir="src/com/stc/BadgePlugin" />
+        <!-- Util -->
+        <source-file src="src/android/util/CloseHelper.java" 
+            target-dir="src/com/stc/BadgePlugin/util" />
+        <source-file src="src/android/util/ImageUtil.java" 
+            target-dir="src/com/stc/BadgePlugin/util" />
+        <!-- Impl -->
+        <source-file src="src/android/impl/AdwHomeBadger.java" 
+            target-dir="src/com/stc/BadgePlugin/impl" />
+        <source-file src="src/android/impl/AndroidHomeBadger.java" 
+            target-dir="src/com/stc/BadgePlugin/impl" />
+        <source-file src="src/android/impl/ApexHomeBadger.java" 
+                    target-dir="src/com/stc/BadgePlugin/impl" />
+        <source-file src="src/android/impl/LGHomeBadger.java" 
+                    target-dir="src/com/stc/BadgePlugin/impl" />
+        <source-file src="src/android/impl/NewHtcHomeBadger.java" 
+                    target-dir="src/com/stc/BadgePlugin/impl" />
+        <source-file src="src/android/impl/NovaHomeBadger.java" 
+                    target-dir="src/com/stc/BadgePlugin/impl" />
+        <source-file src="src/android/impl/SamsungHomeBadger.java" 
+                    target-dir="src/com/stc/BadgePlugin/impl" />
+        <source-file src="src/android/impl/SolidHomeBadger.java" 
+                    target-dir="src/com/stc/BadgePlugin/impl" />
+        <source-file src="src/android/impl/SonyHomeBadger.java" 
+                    target-dir="src/com/stc/BadgePlugin/impl" />
+    </platform>
+</plugin>
